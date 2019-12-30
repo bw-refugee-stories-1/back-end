@@ -18,7 +18,10 @@
   },
   "homepage": "https://github.com/bw-refugee-stories-1/back-end#readme",
   "dependencies": {
+    "cors": "^2.8.5",
     "express": "^4.17.1",
+    "helmet": "^3.21.2",
+    "jsonwebtoken": "^8.5.1",
     "nodemon": "^2.0.2"
   }
 }
