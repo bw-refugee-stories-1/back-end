@@ -16,9 +16,14 @@ function findByUsername(username){
     return findBy({ username }).first();
 }
 
+function find(){
+    return db('users')
+}
+
 module.exports = {
     insert,
     findBy,
-    findByUsername
+    findByUsername,
+    find
     
 }
