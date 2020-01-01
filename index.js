@@ -1,6 +1,8 @@
 const express = require ('express');
 const cors = require('cors');
 const session = require('express-session');
+const knexSessionStore = require('connect-session-knex')(session);
+const db = require('./data/db.js');
 
 const sessionConfig = {
 
@@ -17,9 +19,16 @@ const sessionConfig = {
 
     resave: false,
     // determines whether or not we save the cookie again on multiple visits
-    saveUninitialized: false
+    saveUninitialized: false,
     // if true we would be giving everyone a cookie, whether they are logged in or not
     
+    store: knexSessionStore({
+        knex: db,
+        tablename: 'knexsessions',
+        sidfieldname: 'sessionid',
+        createtable: true,
+        clearInterval: 1000 * 60 * 30
+    })
 };
 
 const server = express();
