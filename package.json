@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "a backend project",
   "main": "index.js",
-  "scripts": {    
+  "scripts": {
     "server": "nodemon index.js"
   },
   "repository": {
