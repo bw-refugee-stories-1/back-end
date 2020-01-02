@@ -6,9 +6,8 @@ const db = require('./data/db.js');
 
 const sessionConfig = {
 
-    secret: process.env.SESSION_SECRET || 'test secret',
-    
-    name: '',
+    secret: process.env.SESSION_SECRET || 'test secret',    
+    name: 'cookie monster',
     cookie: {
         maxAge: 1000 * 60 * 60 * 24,
         // maxAge is set in milliseconds
