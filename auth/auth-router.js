@@ -28,7 +28,7 @@ router.post('/login', (req, res) => {
     .findByUsername(username)
     .then(user => {
         if(user && bcrypt.compareSync(password, user.password)){
-            // req.session.user = user;
+            req.session.user = user;
             // in order to look up information about the user in the future
             // e.g. Get specific comments user has posted or liked out of our db
             // we can also use this to tell if a user is logged in or not
@@ -36,7 +36,7 @@ router.post('/login', (req, res) => {
             res.status(200).json({ message: 'login successful' });
             // 200 === ok
         } else {
-            res.status(401).json({ message: 'User does not exist' });  
+            res.status(401).json({ message: 'User does not exist or incorrect password' });  
             // 401 === unauthorized
         }
         
