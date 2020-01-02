@@ -30,7 +30,14 @@ const sessionConfig = {
 };
 
 const server = express();
-server.use(cors());
+server.use(cors({
+
+    credentials: true,
+    origin: 'http://localhost:3000',
+    // origin address will change on deployment   
+
+}));
+
 server.use(express.json());
 server.use(session(sessionConfig));
 
