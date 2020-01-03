@@ -34,7 +34,7 @@ server.use(cors({
 
     credentials: true,
     origin: 'http://localhost:3000',
-    // origin address will change on deployment   
+    // origin address will change on deployment will be FE launched url  
 
 }));
 
