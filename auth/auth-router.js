@@ -1,7 +1,23 @@
 const router = require('express').Router();
 const users = require('../users/users-model.js');
 const bcrypt = require('bcryptjs');
+const jwt = require('jsonwebtoken')
 
+function generateToken(user){
+    
+    const payload = {
+        username: user.name,
+        id: user.id
+    };
+
+    const options = {
+        expiresIn: '1d'
+    };
+    // determines when this token is going to expire
+
+    return jwt.sign(payload.process.env.JWT_SECRET || 'blablahblah in development', options)
+
+};
 
 // Registration
 router.post('/register', (req, res) => {
@@ -28,12 +44,17 @@ router.post('/login', (req, res) => {
     .findByUsername(username)
     .then(user => {
         if(user && bcrypt.compareSync(password, user.password)){
-            req.session.user = user;
+
+            const token = generateToken(user);
+
             // in order to look up information about the user in the future
             // e.g. Get specific comments user has posted or liked out of our db
             // we can also use this to tell if a user is logged in or not
 
-            res.status(200).json({ message: 'login successful' });
+            res.status(200).json({ 
+                message: 'login successful',
+                token
+             });
             // 200 === ok
         } else {
             res.status(401).json({ message: 'User does not exist or incorrect password' });  
