@@ -15,7 +15,7 @@ function generateToken(user){
     };
     // determines when this token is going to expire
 
-    return jwt.sign(payload.process.env.JWT_SECRET || 'blablahblah in development', options)
+    return jwt.sign(payload, process.env.JWT_SECRET || 'blablahblah in development', options)
 
 };
 
