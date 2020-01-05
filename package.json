@@ -10,6 +10,9 @@
     "server": "nodemon index.js",
     "start": "node index.js"
   },
+  "jest": {
+    "testEnvironment": "node"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/bw-refugee-stories-1/back-end.git"
