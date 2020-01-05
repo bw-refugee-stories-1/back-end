@@ -70,7 +70,7 @@ router.post('/login', (req, res) => {
         res.status(500).json({ message: 'Error logging in'})
     });
 
-})
+});
 
 
 // Refresh

@@ -20,6 +20,8 @@ function find(){
     return db('users')
 }
 
+
+
 module.exports = {
     insert,
     findBy,
