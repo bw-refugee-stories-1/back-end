@@ -1,7 +1,8 @@
 const router = require('express').Router();
 const users = require('../users/users-model.js');
 const bcrypt = require('bcryptjs');
-const jwt = require('jsonwebtoken')
+const jwt = require('jsonwebtoken');
+const middleware = require('./middleware.js');
 
 function generateToken(user){
     
@@ -18,6 +19,8 @@ function generateToken(user){
     return jwt.sign(payload, process.env.JWT_SECRET || 'blablahblah in development', options)
 
 };
+
+
 
 // Registration
 router.post('/register', (req, res) => {
@@ -66,6 +69,20 @@ router.post('/login', (req, res) => {
         console.log(err)
         res.status(500).json({ message: 'Error logging in'})
     });
+
+})
+
+
+// Refresh
+
+router.get('/refresh', middleware, (req, res) => {
+
+    users
+    .findByUsername(req.user.username)
+    .then(user => {
+        const token = generateToken(user);
+        res.status(200).json({ token })   })
+
 
 })
 
