@@ -16,5 +16,9 @@ server.use('/users', usersRouter);
 
 
 
-const port = 4040;
-server.listen(4040, () => console.log(`server listening on ${port}`));
+const port = process.env.PORT || 4040;
+
+server.listen(port, () => {
+    console.log(`\n*** Server Running on http://localhost:${port} ***\n`);
+  });
+
