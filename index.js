@@ -14,6 +14,10 @@ const usersRouter = require('./users/users-router.js');
 server.use('/users', usersRouter);
 
 
+server.get('/', (req, res ) => {
+    res.send("<h1>WORKING!!!!!!!!!!!!! </h1>")
+})
+
 
 
 const port = process.env.PORT || 4040;
