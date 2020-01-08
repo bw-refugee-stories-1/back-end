@@ -8,11 +8,12 @@ exports.up = function(knex) {
 
         .createTable('stories', tbl => {
             tbl.increments('id');
+            tbl.string('img_url');
             tbl.string('author');
             tbl.string('email').notNullable();
             tbl.string('title');
             tbl.string('text').notNullable();
-            tbl.string('approved');
+            tbl.string('approved').defaultTo(false);
 
         })
 

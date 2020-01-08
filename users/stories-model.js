@@ -15,6 +15,7 @@ function insert(story) {
       .then(ids => ({ id: ids[0] }));
   }
 
+  
 
 function getStories(){
     return db('stories')
@@ -26,16 +27,23 @@ function getStoriesByID(id){
     .first();
 }
 
-  function findById(id) {
-    return db('stories')
-        .where({id})
-        .first()
-}
+//   function findById(id) {
+//     return db('stories')
+//         .where({id})
+//         .first()
+// }
 
-  async function add(story) {
-    const [id] = await db('stories').insert(story)
-    return findById(id)
-}
+function findById(id) {
+    return db('stories')
+      .where({ id: Number(id) })
+      .first();
+  }
+
+  function remove(id) {
+    return db('stories')
+      .where('id', Number(id))
+      .del();
+  }
 
 module.exports = {
     postStory,
@@ -43,5 +51,5 @@ module.exports = {
     getStoriesByID,
     insert,
     findById, 
-    add
+    remove
 }
