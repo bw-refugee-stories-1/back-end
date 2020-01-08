@@ -26,16 +26,22 @@ function getStoriesByID(id){
     .first();
 }
 
-function findById(id) {
-    return db('users')
-      .where({ id: Number(id) })
-      .first();
-  }
+  function findById(id) {
+    return db('stories')
+        .where({id})
+        .first()
+}
+
+  async function add(story) {
+    const [id] = await db('stories').insert(story)
+    return findById(id)
+}
 
 module.exports = {
     postStory,
     getStories,
     getStoriesByID,
     insert,
-    findById
+    findById, 
+    add
 }

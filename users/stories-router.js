@@ -34,15 +34,18 @@ router.get('/:id', (req, res) => {
 
 
     
-//   router.post('/', (req, res) => {
-//     const { email, text} = req.body;
-//     if (!email || !text){
-//         return res.status(400).json({err: "need email and content"});
-//     }
-//     db.insert({email, text})
-    
-//     .then(id => res.status(200).json(id));
-// });
+  router.post('/', (req, res) => {
+    const storyData = req.body
+
+
+    stories.add(storyData)
+        .then(story => {
+            res.status(201).json(story)
+        })
+        .catch(err => {
+            res.status(500).json({message: "Failed to create story ",err})
+        })
+})
 
 
 
