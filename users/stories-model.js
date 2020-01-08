@@ -45,11 +45,18 @@ function findById(id) {
       .del();
   }
 
+  function update(id, story) {
+    return db('stories')
+      .where('id', Number(id))
+      .update(story);
+  }
+
 module.exports = {
     postStory,
     getStories,
     getStoriesByID,
     insert,
     findById, 
-    remove
+    remove,
+    update
 }

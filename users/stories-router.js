@@ -73,5 +73,32 @@ router.get('/:id', (req, res) => {
   });
 
 
+  router.put('/api/story/:id', (req, res) => {
+    const { id } = req.params;
+    const { author, email, title, text, approved } = req.body;
+    if (!approved) {
+      
+      return res.status(400).json({error: 'Requires some changes'});
+    }
+    stories.update(id, { author, email, title, text, approved })
+      .then(updated => {
+        if (updated) {
+          stories.findById(id)
+            .then(story => res.status(200).json(story))
+            .catch(err => {
+              console.log(err);
+              res.status(500).json({error: 'Error retrieving story'});
+            });
+        } else {
+          res.status(404).json({error: `story with id ${id} not found`});
+        }
+      })
+      .catch(err => {
+        console.log(err);
+        res.status(500).json({error: 'Error updating story'});
+      });
+  });
+
+
 
 module.exports = router;
