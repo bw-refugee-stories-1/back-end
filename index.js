@@ -13,6 +13,8 @@ server.use('/auth', authRouter);
 const usersRouter = require('./users/users-router.js');
 server.use('/users', usersRouter);
 
+const storiesRouter = require('./users/stories-router.js');
+server.use('/stories', storiesRouter);
 
 server.get('/', (req, res ) => {
     res.send("<h1>WORKING!!!!!!!!!!!!! </h1>")
