@@ -1,7 +1,9 @@
 const router = require('express').Router();
 const stories = require('./stories-model.js');
 
+// CRUD ROUTERS
 
+// 1. READ
 router.get('/', (req, res) => {
 
     stories.getStories()
@@ -12,7 +14,7 @@ router.get('/', (req, res) => {
 
 })
 
-
+// 2. READ
 router.get('/:id', (req, res) => {
 
     const { id } = req.params;
@@ -33,15 +35,15 @@ router.get('/:id', (req, res) => {
   });
 
 
-    
+  // 3. CREATE + READ
   router.post('/api/stories', (req, res) => {
     console.log(req.body);
 
-    const { author, email, title, text } = req.body;
+    const { img_url, author, email, title, text } = req.body;
     if (!email || !text) {
       res.status(400).json({error: "Requires author and email"});
     } else {
-      stories.insert({ author, email, title, text })
+      stories.insert({ img_url, author, email, title, text })
         .then(({ id }) => {
           stories.findById(id)
             .then(story => {
@@ -55,6 +57,8 @@ router.get('/:id', (req, res) => {
         }
   });
 
+
+  // 4. DELETE
   router.delete('/api/delete/:id', (req, res) => {
     const { id } = req.params;
     stories.remove(id)
@@ -75,6 +79,7 @@ router.get('/:id', (req, res) => {
   });
 
 
+  // 5. UPDATE
   router.put('/api/story/:id', (req, res) => {
     const { id } = req.params;
     const { author, email, title, text, approved } = req.body;
