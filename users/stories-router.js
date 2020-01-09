@@ -61,10 +61,12 @@ router.get('/:id', (req, res) => {
       .then(deleted => {
         console.log(deleted);
         if (deleted) {
-          res.status(204).end();
+          // res.status(204).end();
+          res.status(202).send(req.params.id)
         } else {
           res.status(404).json({error: "story with ID does not exist"});
         }
+        
       })
       .catch(err => {
         console.log(err);
