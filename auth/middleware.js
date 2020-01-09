@@ -1,5 +1,7 @@
 const jwt = require('jsonwebtoken');
 
+// JWT WAS USED TO HERE
+
 module.exports = (req, res, next) => {
 
     const token = req.headers.authorization;
@@ -16,11 +18,5 @@ module.exports = (req, res, next) => {
     } else {
         res.status(400).json({message: 'no auth token provided'})
     }
-
-    // if(req.session && req.session.user){
-    //     next();
-    // } else {
-    //     req.status(401).json({message: 'UNAUTHORIZED'})
-    //     // 401 === unauthorized
-    // }       
+     
 }

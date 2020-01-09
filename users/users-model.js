@@ -1,5 +1,9 @@
 const db = require('../data/db.js');
 
+// OUR USER IS THE EDITOR FOR STORIES POSTED TO THE SITE
+
+
+
 function insert(user){
 
   return db('users')
