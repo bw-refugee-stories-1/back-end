@@ -74,7 +74,6 @@ router.post('/login', (req, res) => {
 
 
 // Refresh
-// May not use
 router.get('/refresh', middleware, (req, res) => {
 
     users
